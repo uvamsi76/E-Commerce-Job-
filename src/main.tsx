@@ -5,12 +5,14 @@ import {createBrowserRouter,RouterProvider} from 'react-router-dom'
 import Homepage from './pages/Homepage.tsx';
 import Productpage from './pages/Productpage.tsx';
 import PagenotFound from './pages/PagenotFound.tsx';
+import "./index.css"
 
 
 const router =createBrowserRouter([{
   path:'/',
   element:<Homepage/>,
-  errorElement:<PagenotFound/>
+  errorElement:<PagenotFound/>,
+  children:[]
 },
 {
   path:'/product/:productid',
