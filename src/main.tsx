@@ -12,12 +12,11 @@ const router =createBrowserRouter([{
   path:'/',
   element:<Homepage/>,
   errorElement:<PagenotFound/>,
-  children:[
-  {
-    path:'/product/:productid',
-    element:<Productpage/>
-  }
-]
+  children:[]
+},
+{
+  path:'/product/:productid',
+  element:<Productpage/>
 }
 ]);
 
