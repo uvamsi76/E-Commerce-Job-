@@ -10,11 +10,13 @@ import PagenotFound from './pages/PagenotFound.tsx';
 const router =createBrowserRouter([{
   path:'/',
   element:<Homepage/>,
-  errorElement:<PagenotFound/>
-},
-{
-  path:'/product/:productid',
-  element:<Productpage/>
+  errorElement:<PagenotFound/>,
+  children:[
+  {
+    path:'/product/:productid',
+    element:<Productpage/>
+  }
+]
 }
 ]);
 
