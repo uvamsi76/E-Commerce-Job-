@@ -6,6 +6,8 @@ import Homepage from './pages/Homepage.tsx';
 import Productpage from './pages/Productpage.tsx';
 import PagenotFound from './pages/PagenotFound.tsx';
 import "./index.css"
+import Cartpage from './pages/Cartpage.tsx';
+import Login from './pages/Login.tsx';
 
 
 const router =createBrowserRouter([{
@@ -17,6 +19,12 @@ const router =createBrowserRouter([{
 {
   path:'/product/:productid',
   element:<Productpage/>
+},{
+  path:'/cart',
+  element:<Cartpage/>
+},{
+  path:'/login',
+  element:<Login/>
 }
 ]);
 
