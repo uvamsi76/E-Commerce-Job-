@@ -5,6 +5,8 @@ export default {
   theme: {
     extend: {
       colors: {
+        'flipkart':'#f0f2f5',
+        'dark-color':'#1e293b',
         primary: {
           500: '#faf5cf',
           700: '#a37d54',
@@ -22,5 +24,19 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    function({addUtilities}){
+      const newUtilities={
+        '.no-scrollbar::-webkit-scrollbar':{
+          display:'none'
+        },
+        '.no-scrollbar':{
+          '-ms-overflow-stryle':'none',
+          'scrollbar-width':'none',
+        }
+
+      }
+      addUtilities(newUtilities)
+    }
+  ],
 };

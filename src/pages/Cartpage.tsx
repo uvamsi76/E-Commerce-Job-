@@ -1,6 +1,8 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import axios from 'axios'
 import { getCookie } from '../utils/cookie'
+import Spinner from '../components/Spinner'
+import Navbar from '../components/Navbar'
 
 const Cartpage = () => {
     const [cart,setcart]=useState([])
@@ -35,10 +37,15 @@ const Cartpage = () => {
         };
     },[userid])
     if(isloading){
-        return <div>Loading ....</div>
+        return (
+            <div className='flex items-center justify-center mt-96'>
+                <Spinner/>
+            </div>)
     }
     return (
     <div>
+        <Navbar/>
+        <div className='mt-40'>
         <div>
         <h1>Cart</h1>
             {JSON.stringify(cart)}
@@ -50,6 +57,7 @@ const Cartpage = () => {
             }
         </div>
         {/* <div>{JSON.stringify(products)}</div> */}
+        </div>
     </div>
   )
 }
