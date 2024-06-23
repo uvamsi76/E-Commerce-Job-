@@ -8,6 +8,7 @@ import PagenotFound from './pages/PagenotFound.tsx';
 import "./index.css"
 import Cartpage from './pages/Cartpage.tsx';
 import Login from './pages/Login.tsx';
+import Products from './pages/Products.tsx';
 
 
 const router =createBrowserRouter([{
@@ -25,7 +26,12 @@ const router =createBrowserRouter([{
 },{
   path:'/login',
   element:<Login/>
-}
+},{
+  path:'/products/:categoryid',
+  element:<Products/>
+},
+
+
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')!).render(

@@ -26,6 +26,7 @@ const Login = () => {
             username:username,
             password:password
         }
+        // const cartid=await axios.get(`${baseurl}/carts/login`)
         const auth=await axios.post(`${baseurl}/auth/login`,postdata)
         console.log(auth.data)
         setCookie('token', auth.data.token, 7);
