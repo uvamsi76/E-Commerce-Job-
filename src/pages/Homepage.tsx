@@ -1,8 +1,6 @@
-import React, { useEffect, useMemo, useState } from 'react'
-import {Link, NavLink,Outlet} from 'react-router-dom'
-import axios from 'axios'
+import  { useEffect, useMemo, useState } from 'react'
+import {Link} from 'react-router-dom'
 import Carosel from '../components/Carosel';
-import Categories from '../components/Categories';
 import Spinner from '../components/Spinner';
 import Errorpage from '../components/Errorpage';
 import Navbar from '../components/Navbar';
@@ -75,7 +73,6 @@ const Homepage = () => {
     }
     a();
 },[]);
-let parr=[]
 if(loading){
     return (
     <div className='flex items-center justify-center mt-96'>

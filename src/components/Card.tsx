@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react'
-import { MdCurrencyRupee } from "react-icons/md";
+import {  useState } from 'react'
 import Button from './utils/Button';
 import { FaCartPlus } from "react-icons/fa6";
 import { Link } from 'react-router-dom';

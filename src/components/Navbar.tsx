@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import  { useEffect, useState } from 'react'
 import {Link, useNavigate} from 'react-router-dom'
 import { GiAbstract013 } from "react-icons/gi";
 import Button from './utils/Button';
 import { MdMenu } from "react-icons/md";
 import { MdOutlineClose } from "react-icons/md";
-import { clearCookies, getCookie, setCookie } from '../utils/cookie';
+import { clearCookies, getCookie } from '../utils/cookie';
 
 const Links=[
     {name:"HOME",link:"/"},
