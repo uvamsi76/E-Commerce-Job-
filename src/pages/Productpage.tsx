@@ -6,10 +6,9 @@ import Button from '../components/utils/Button';
 import { FaCartPlus } from 'react-icons/fa6';
 import Qty from '../components/utils/Qty';
 import { RiStarSFill } from "react-icons/ri";
-import { RiStarSLine } from "react-icons/ri";
+// import { RiStarSLine } from "react-icons/ri";
 import { getCookie } from '../utils/cookie';
 import Card from '../components/Card';
-import Carosel from '../components/Carosel';
 import Carousel from 'react-multi-carousel';
 import axios from 'axios';
 
@@ -22,8 +21,8 @@ const Productpage = () => {
     const [similarprods,setsimilarprods]=useState([])
     const [isloading,setisloading]=useState(false)
     const [qty,setqty]=useState(0)
-    const uid=getCookie('userid')
-    const [deliveryaddress,setdeliveryaddress]=useState([])
+    // const uid=getCookie('userid')
+    // const [deliveryaddress,setdeliveryaddress]=useState([])
     const [isrefreshed,setisrefreshed]=useState(false)
     const fetchrequest= useCallback(async ()=>{
         setisloading(true)

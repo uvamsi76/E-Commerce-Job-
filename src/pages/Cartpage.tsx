@@ -1,11 +1,10 @@
-import React, { useEffect, useMemo, useState } from 'react'
+import  { useEffect,  useState } from 'react'
 import axios from 'axios'
 import { getCookie } from '../utils/cookie'
 import Spinner from '../components/Spinner'
 import Navbar from '../components/Navbar'
 import Qty from '../components/utils/Qty'
 import Button from '../components/utils/Button'
-import { FaCartPlus } from 'react-icons/fa6'
 import { RiStarSFill } from 'react-icons/ri'
 
 const Cartpage = () => {
@@ -48,7 +47,6 @@ const Cartpage = () => {
         // console.log(prods)
         let p:any=[]
         let z:any={}
-        let x:any={}
         const a=prods.map(async (prod:prodtype)=>{
             const req=await axios.get(`${baseurl}/products/${prod.productId}`)
             const data=await req.data

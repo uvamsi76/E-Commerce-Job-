@@ -1,17 +1,16 @@
-import React, { useEffect, useState } from 'react'
+import  {  useState } from 'react'
 import axios from 'axios'
 import { setCookie } from '../utils/cookie'
 import Navbar from '../components/Navbar'
-import Button from '../components/utils/Button'
 import { useNavigate } from 'react-router-dom'
 import { getdate } from '../utils/getdate'
 const Login = () => {
     const navigate=useNavigate()
     const [username,setusername]= useState('')
     const [password,setpassword]= useState('')
-    const [userid,setuserid]=useState(0)
-    const [carts,setcarts]=useState<any>([])
-    const [isfetching,setisfetching]=useState(false)
+    // const [userid,setuserid]=useState(0)
+    // const [carts,setcarts]=useState<any>([])
+    // const [isfetching,setisfetching]=useState(false)
     const baseurl=import.meta.env.VITE_Base_Api_URI
     
     // const finduserid =async (username:any)=>{
