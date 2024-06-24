@@ -42,7 +42,7 @@ const Card = (props:any) => {
       <div className='flex flex-col items-center justify-center gap-4 p-4'>
         <p className='flex font-serif text-xl font-bold justify-items-center'>{props.product.title}</p>
         <p className='flex text-lg font-semibold'>${props.product.price}</p>
-        <div className='fixed bottom-0 flex mb-10'>
+        <div className='flex mb-10'>
             <Qty class='w-10 h-10' getcount={getcount} refresh={isrefreshed}/>
             <Button Click={onclicked}><FaCartPlus /></Button>
         </div>
