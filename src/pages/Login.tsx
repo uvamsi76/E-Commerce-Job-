@@ -113,7 +113,7 @@ const Login = () => {
         <div className='flex flex-col items-center justify-center mt-[45%] md:mt-[15%]'>
             <form className='flex flex-col items-center justify-center p-20 border shadow-2xl' onSubmit={Submit}>
                 <input className='p-5 mt-0 border hover:shadow-xl hover:duration-500' placeholder='username' onChange={(e:any)=>setusername(e.target.value)}/>
-                <input className='p-5 mt-10 border hover:shadow-xl hover:duration-500' placeholder='password'    onChange={(e:any)=>setpassword(e.target.value)}/>
+                <input className='p-5 mt-10 border hover:shadow-xl hover:duration-500' placeholder='password' type='password' onChange={(e:any)=>setpassword(e.target.value)}/>
                 <button type='submit' className='mt-10 bg-indigo-800 text-white font-[Poppins] py-2 px-6 rounded hover:bg-indigo-400 duration-500`'>Submit</button>
             </form>
         </div>
