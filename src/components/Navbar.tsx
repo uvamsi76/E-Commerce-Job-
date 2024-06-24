@@ -34,8 +34,8 @@ const Navbar = () => {
                 <span className='pt-2 mr-1 text-3xl text-slate-600'>
                 <GiAbstract013 />
                 </span>
-                <p className='pt-2 text-indigo-700'>
-                    Designer
+                <p className='pt-2 text-3xl text-indigo-700 font-Mono'>
+                    DigiBuy
                 </p>
             </div>
             </Link>
