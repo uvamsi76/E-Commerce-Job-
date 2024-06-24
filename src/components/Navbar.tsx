@@ -8,7 +8,7 @@ import { clearCookies, getCookie } from '../utils/cookie';
 
 const Links=[
     {name:"HOME",link:"/"},
-    {name:"Cart",link:"/cart"},
+    {name:"SignUp",link:"/signup"},
 ]
 
 const Navbar = () => {
@@ -49,6 +49,9 @@ const Navbar = () => {
                     </li>
                 )
                 )}
+                {isloggedin?<li key='cart' className='text-xl md:ml-8 md:my-0 my-7'>
+                        <Link to='/cart' className='text-indigo-700 duration-300 hover:text-gray-400'>Cart</Link>
+                    </li>:<li></li>}
                 <div className='md:ml-8'>
                     {isloggedin?(<Button Click={clicked}>Logout</Button>):<Link to='/login'><Button>Login</Button></Link>}
                 </div>

@@ -4,10 +4,14 @@ import { setCookie } from '../utils/cookie'
 import Navbar from '../components/Navbar'
 import { useNavigate } from 'react-router-dom'
 import { getdate } from '../utils/getdate'
+import Spinner from '../components/Spinner'
+import Errorpage from '../components/Errorpage'
 const Login = () => {
     const navigate=useNavigate()
     const [username,setusername]= useState('')
     const [password,setpassword]= useState('')
+    const [isloading,setisloading]=useState(false)
+    const [error,seterror] = useState<any>()
     // const [userid,setuserid]=useState(0)
     // const [carts,setcarts]=useState<any>([])
     // const [isfetching,setisfetching]=useState(false)
@@ -57,7 +61,9 @@ const Login = () => {
 
     const Submit = async (e:any)=>{
         e.preventDefault();
+        setisloading(true)
         let uid=0
+        try{
         const postdata={
             username:username,
             password:password
@@ -85,7 +91,21 @@ const Login = () => {
         setCookie('token', auth.data.token, 1);
         setCookie('userid', JSON.stringify(uid), 1);
         setCookie('cartid', carts.data.id, 1);
+    }
+    catch (e){
+        seterror(e)
+        alert(e)
+    }
+    finally{
+        setisloading(false)
         navigate('/')
+    }
+    }
+    if(isloading){
+        return (
+        <div className='flex items-center justify-center mt-96'>
+            <Spinner/>
+        </div>)
     }
   return (
     <div className='h-screen overflow-y-scroll no-scrollbar'>
@@ -93,7 +113,7 @@ const Login = () => {
         <div className='flex flex-col items-center justify-center mt-[45%] md:mt-[15%]'>
             <form className='flex flex-col items-center justify-center p-20 border shadow-2xl' onSubmit={Submit}>
                 <input className='p-5 mt-0 border hover:shadow-xl hover:duration-500' placeholder='username' onChange={(e:any)=>setusername(e.target.value)}/>
-                <input className='p-5 mt-10 border hover:shadow-xl hover:duration-500' placeholder='password' type='password' onChange={(e:any)=>setpassword(e.target.value)}/>
+                <input className='p-5 mt-10 border hover:shadow-xl hover:duration-500' placeholder='password'    onChange={(e:any)=>setpassword(e.target.value)}/>
                 <button type='submit' className='mt-10 bg-indigo-800 text-white font-[Poppins] py-2 px-6 rounded hover:bg-indigo-400 duration-500`'>Submit</button>
             </form>
         </div>
