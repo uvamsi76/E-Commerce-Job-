@@ -8,8 +8,12 @@ import "./index.css"
 import Cartpage from './pages/Cartpage.tsx';
 import Login from './pages/Login.tsx';
 import Products from './pages/Products.tsx';
+import Signup from './pages/Signup.tsx';
 
+alert(`Please use this creds for testing purposes Thankyou
 
+        {"username": "kevinryan",
+        "password": "kev02937@",}`)
 const router =createBrowserRouter([{
   path:'/',
   element:<Homepage/>,
@@ -28,6 +32,9 @@ const router =createBrowserRouter([{
 },{
   path:'/products/:categoryid',
   element:<Products/>
+},{
+  path:'/signup',
+  element:<Signup/>
 },
 
 
