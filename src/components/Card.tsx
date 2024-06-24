@@ -1,14 +1,39 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { MdCurrencyRupee } from "react-icons/md";
 import Button from './utils/Button';
 import { FaCartPlus } from "react-icons/fa6";
 import { Link } from 'react-router-dom';
+import Qty from './utils/Qty';
+import { getCookie } from '../utils/cookie';
+import axios from 'axios';
+import { getdate } from '../utils/getdate';
 
-const onclicked=()=>{
-  console.log('added to cart')
-}
 
 const Card = (props:any) => {
+  const [qty,setqty]=useState(0)
+  const [isrefreshed,setisrefreshed]=useState(false)
+  const baseurl=import.meta.env.VITE_Base_Api_URI
+
+  // useEffect(()=>{
+  //   setadded(false)
+  // },[added])
+  const onclicked=async ()=>{
+    setisrefreshed(true)
+    const date=getdate()
+    const cartid=getCookie('cartid')
+    const userid=getCookie('userid')
+    const postdata:any={
+      userId:userid,
+      date:date,
+      products:[{productId:props.product.id,quantity:qty}]
+    }
+    const addcart= await axios.put(`${baseurl}/carts/${cartid}`,postdata)
+    console.log(addcart)
+  }
+  const getcount=(count:any,refresh:any)=>{
+    setqty(count)
+    setisrefreshed(refresh)
+  }
   return (
     <div className='bg-white h-[450px] text-black rounded-xl'>
       {/* <h1>{JSON.stringify(props.product)}</h1> */}
@@ -18,7 +43,10 @@ const Card = (props:any) => {
       <div className='flex flex-col items-center justify-center gap-4 p-4'>
         <p className='flex font-serif text-xl font-bold justify-items-center'>{props.product.title}</p>
         <p className='flex text-lg font-semibold'>${props.product.price}</p>
-        <Button Click={onclicked}><FaCartPlus /></Button>
+        <div className='fixed bottom-0 flex mb-10'>
+            <Qty class='w-10 h-10' getcount={getcount} refresh={isrefreshed}/>
+            <Button Click={onclicked}><FaCartPlus /></Button>
+        </div>
       </div>
     </div> 
   )

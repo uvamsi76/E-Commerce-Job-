@@ -11,6 +11,7 @@ import { getCookie } from '../utils/cookie';
 import Card from '../components/Card';
 import Carosel from '../components/Carosel';
 import Carousel from 'react-multi-carousel';
+import axios from 'axios';
 
 const Productpage = () => {
     const params=useParams();
@@ -23,6 +24,7 @@ const Productpage = () => {
     const [qty,setqty]=useState(0)
     const uid=getCookie('userid')
     const [deliveryaddress,setdeliveryaddress]=useState([])
+    const [isrefreshed,setisrefreshed]=useState(false)
     const fetchrequest= useCallback(async ()=>{
         setisloading(true)
         const fetchproddet= await fetch(`${baseurl}/products/${prodid}`)
@@ -40,13 +42,27 @@ const Productpage = () => {
     useEffect(()=>{
         fetchrequest()
         },[prodid])
-        const onclicked=()=>{
-            // addtocart(qty,cartid,prodid)
-            alert(qty)
+        const onclicked=async ()=>{
+            setisrefreshed(true)
+        const today = new Date();
+        const year = today.getFullYear();
+        const month = String(today.getMonth() + 1).padStart(2, '0');
+        const day = String(today.getDate()).padStart(2, '0');
+        const formattedDate = `${year}-${month}-${day}`;
+        const cartid=getCookie('carts')
+        const userid=getCookie('userid')
+        const postdata:any={
+            userId:userid,
+            date:formattedDate,
+            products:[{productId:product.id,quantity:qty}]
         }
-        const getcount=(count:any)=>{
+        const addcart= await axios(`${baseurl}/carts/${cartid}`,postdata)
+        console.log(addcart)
+        }
+        const getcount=(count:any,refresh:any)=>{
             setqty(count)
-        }
+            setisrefreshed(refresh)
+          }
     if(isloading || !product){
         return (
             <div className='flex items-center justify-center mt-96'>
@@ -80,7 +96,7 @@ const Productpage = () => {
                 <div className='mt-24'>
                     <img className='pl-14 h-[50%] w-auto' src={`${product.image}`}/>
                     <div className='flex m-5 mt-20'>
-                        <Qty getcount={getcount}/>
+                        <Qty getcount={getcount} refresh={isrefreshed}/>
                         <Button Click={onclicked} class='w-[40%] flex justify-center items-center'><FaCartPlus className='w-10 h-auto'/></Button>
                     </div>
                 </div>

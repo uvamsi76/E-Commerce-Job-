@@ -21,7 +21,7 @@ const Homepage = () => {
     const [loading,isloading]=useState(false);
     const [error,seterror]=useState<any>(null)
     const baseurl=import.meta.env.VITE_Base_Api_URI
-    
+
     const responsive = {
         superLargeDesktop: {
           // the naming can be any, depends on you.
@@ -34,7 +34,7 @@ const Homepage = () => {
         },
         tablet: {
           breakpoint: { max: 1024, min: 464 },
-          items: 2
+          items: 1
         },
         mobile: {
           breakpoint: { max: 464, min: 0 },

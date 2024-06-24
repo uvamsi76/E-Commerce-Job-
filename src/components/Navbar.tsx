@@ -1,23 +1,36 @@
-import React, { useState } from 'react'
-import {Link} from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import {Link, useNavigate} from 'react-router-dom'
 import { GiAbstract013 } from "react-icons/gi";
 import Button from './utils/Button';
 import { MdMenu } from "react-icons/md";
 import { MdOutlineClose } from "react-icons/md";
+import { clearCookies, getCookie, setCookie } from '../utils/cookie';
 
 const Links=[
     {name:"HOME",link:"/"},
     {name:"Cart",link:"/cart"},
-    {name:"products",link:"/products"},
-    {name:"Letsgo",link:"/"},
 ]
 
 const Navbar = () => {
     const [open,setopen]=useState(false)
+    const [isloggedin,setisloggedin]=useState(false)
+    const navigate=useNavigate()
+    const clicked=()=>{
+        clearCookies();
+        navigate('/')
+        location.reload();
+    }
+    useEffect(()=>{
+        const userid=getCookie('token')
+        setisloggedin(userid?true:false)
+        console.log(isloggedin)
+
+    },[])
   return (
-    <div className='fixed top-0 left-0 z-50 w-full shadow-md'>
+    <div className='fixed top-0 left-0 z-50 w-full shadow-2xl'>
         <div className='items-center justify-between py-4 bg-flipkart md:flex md:px-10 px-7'>
-            <div className='text-2xl font-bold cursor-pointer flex items-center font-[Poppins] text-gray-800'>
+            <Link to='/'>
+                <div className='text-2xl font-bold cursor-pointer flex items-center font-[Poppins] text-gray-800'>
                 <span className='pt-2 mr-1 text-3xl text-slate-600'>
                 <GiAbstract013 />
                 </span>
@@ -25,6 +38,7 @@ const Navbar = () => {
                     Designer
                 </p>
             </div>
+            </Link>
             <div onClick={()=>{setopen(!open)}} className='absolute text-3xl cursor-pointer right-8 top-5 md:hidden'>
                 {open?<MdOutlineClose />:<MdMenu />}
             </div>
@@ -36,7 +50,7 @@ const Navbar = () => {
                 )
                 )}
                 <div className='md:ml-8'>
-                    <Button>Get started</Button>
+                    {isloggedin?(<Button Click={clicked}>Logout</Button>):<Link to='/login'><Button>Login</Button></Link>}
                 </div>
             </ul>
         </div>
