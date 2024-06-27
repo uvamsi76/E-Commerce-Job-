@@ -12,6 +12,7 @@ const Card = (props:any) => {
   const [qty,setqty]=useState(0)
   const [isrefreshed,setisrefreshed]=useState(false)
   const baseurl=import.meta.env.VITE_Base_Api_URI
+  const title= props.product.title.length>35?props.product.title.substring(0,35)+'....':props.product.title
 
   // useEffect(()=>{
   //   setadded(false)
@@ -40,7 +41,7 @@ const Card = (props:any) => {
         <Link to={`/product/${props.product.id}`}><img src={props.product.image} alt='' className='select-none h-44 w-44' draggable='false'/></Link>
       </div>
       <div className='flex flex-col items-center justify-center gap-4 p-4'>
-        <p className='flex font-serif text-xl font-bold justify-items-center'>{props.product.title}</p>
+        <p className='flex font-serif text-xl font-bold justify-items-center'>{title}</p>
         <p className='flex text-lg font-semibold'>${props.product.price}</p>
         <div className='flex mb-10'>
             <Qty class='w-10 h-10' getcount={getcount} refresh={isrefreshed}/>
